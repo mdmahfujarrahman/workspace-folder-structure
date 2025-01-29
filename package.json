@@ -1,0 +1,40 @@
+{
+  "name": "workspace-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run dev --workspaces",
+    "lint": "eslint \"{domain,application,infrastructure/ui}/**/*.{js,mjs,cjs,ts,tsx}\"",
+    "prepare": "husky"
+  },
+  "workspaces": [
+    "infrastructure/ui"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "echo 'Running ESLint...'",
+      "eslint \"{domain,application,infrastructure/ui}/**/*.{js,mjs,cjs,ts,tsx}\" --fix",
+      "prettier \"{domain,application,infrastructure/ui}/**/*.{js,mjs,cjs,ts,tsx}\" --write"
+    ]
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.19.0",
+    "@typescript-eslint/eslint-plugin": "^8.22.0",
+    "@typescript-eslint/parser": "^8.22.0",
+    "eslint": "^9.19.0",
+    "eslint-config-prettier": "^10.0.1",
+    "globals": "^15.14.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
+    "prettier": "^3.4.2",
+    "typescript-eslint": "^8.22.0"
+  }
+}
